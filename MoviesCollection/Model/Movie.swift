@@ -12,17 +12,19 @@ import SwiftData
 class Movie{
     @Attribute(.unique) var title: String
     var year: String
-    var country: String
-    var director: String
+    var country: String?
+    var director: String?
     var dateAdded: Date
+    @Relationship(inverse: \Genre.films)
+    var genres: [Genre]?
     var review: String?
     var rating: Int?
     init(
-        title: String,
-        year: String,
-        country: String,
-        director: String,
-        dateAdded: Date = Date.now,
+    title: String,
+    year: String,
+    country: String? = nil,
+    director: String? = nil,
+    dateAdded: Date = Date.now,
         review: String? = nil,
         rating: Int? = nil
     ) {
@@ -35,4 +37,5 @@ class Movie{
         self.rating = rating
     }
 }
+
 
